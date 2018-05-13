@@ -1,0 +1,21 @@
+<h3>Sprint #{sprint.number}</h3>
+<br>
+<h5>Tweets during the sprint:</h5>
+<!-- <div transition:fade> -->
+<div>
+    {#each sprint.messages as message}
+        <TweetMessage message={message}/>
+    {/each}
+</div>
+
+<script>
+	import TweetMessage from './TweetMessage.html';
+	// import { fade } from 'svelte-transitions';
+
+	export default {
+		components: {
+			TweetMessage
+		},
+		// transitions: { fade }
+	};
+</script>

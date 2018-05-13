@@ -1,0 +1,52 @@
+<div class="TweetMessage">
+    <span class="TweetMessage-Text" style="font-size: {font}px">{message.message}</span><br>
+    <span class="TweetMessage-Likes" on:click="updateLikesCount(message)">
+        <span class="fas fa-heart"></span>
+        <span class="js-likesCount">{likesCount}</span>
+    </span>
+</div>
+
+<style>
+.TweetMessage {
+  border: 1px solid #329CC3;
+  border-radius: 10px;
+  max-width: 350px;
+  padding: 15px;
+  margin: 15px;
+  color: #329CC3;
+  display: inline-block;
+}
+
+.TweetMessage-Likes {
+  font-size: 16px;
+  margin-top: 10px;
+  display: block;
+}
+
+.TweetMessage-Likes .fa-heart {
+  cursor: pointer;
+}
+</style>
+
+<script>
+	export default {
+		computed: {
+			likesCount: ({ message }) => message.likesCount,
+  		font      : ({ message }) => message.likesCount + 20
+		},
+    methods: {
+      updateLikesCount(message) {
+        fetch('/api/tweet_likes', {
+            method: 'post',
+            headers: {'content-type': 'application/json; charset=utf-8'},
+            body: '{"Message": "/api/tweet_messages/' + message.id + '"}',
+        })
+        .then((response) => {
+          message.likesCount++;
+          this.set({ message: message})
+        })
+        .catch(err => {});
+      }
+    }
+	};
+</script>

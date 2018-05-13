@@ -21,6 +21,9 @@
                     <li class="nav-item {{ app.request.attributes.get('_route') == 'tweet_board_sprint' ? 'active' }}">
                         <a class="nav-link" href="{{ path('tweet_board') }}">Tweet board</a>
                     </li>
+                    <li class="nav-item {{ app.request.attributes.get('_route') == 'svelte_board_sprint' ? 'active' }}">
+                        <a class="nav-link" href="{{ path('svelte_board') }}">Svelte board</a>
+                    </li>
                     <li class="nav-item {{ app.request.attributes.get('_route') == 'poker' ? 'active' }}">
                         <a class="nav-link disabled" href="#">Poker</a>
                     </li>
